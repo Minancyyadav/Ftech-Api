@@ -1,0 +1,28 @@
+import { useEffect, useState } from "react"
+export default function Fetchapi() {
+    const [state, setState] = useState([])
+    const url = "https://hub.dummyapis.com/employee?noofRecords=10&idStarts=1001"
+    useEffect(() => {
+
+        fetch(url).then(re => re.json()).then(data => {
+            console.log(data)
+            setState(data)
+        })
+
+    }, [])
+    return (
+
+        <>
+            {state.map((min) => {
+
+                return (<div key={min.id}> {min.firstName},{min.lastName} ,{min.email},
+                    {min.age},{min.salary},{min.contactNumber} ,{min.address}
+
+                </div>)
+            }
+
+            )}
+            <h1>hello</h1>
+        </>
+    )
+}
